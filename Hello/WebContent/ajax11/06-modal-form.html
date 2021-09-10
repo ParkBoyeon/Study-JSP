@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+    <title>Hello Javascript</title>
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <script src="http://code.jquery.com/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    
+	<!-- ajax-helper -->
+    <link rel="stylesheet" href="../plugins/ajax/ajax_helper.css" />
+    <script src="../plugins/ajax/ajax_helper.js"></script>
+</head>
+
+<body>
+<div class="container">
+	<h1 class="page-header">Modal</h1>
+	<a href="modal-login.html" class="btn btn-primary" 
+		data-toggle="modal" data-target="#myModal">
+	  	로그인
+	</a>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+		<!-- 이 곳에 다른 HTML 파일이 연결된다. -->
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+	$(function() {
+		/** 모달 창이 닫히는 경우의 이벤트 */
+		// ".modal"로 지정할 경우 : 모든 모달창에 적용됨
+		// "#아이디"로 지정할 경우 : 특정 모달 창에 적용
+		$('.modal').on('hidden.bs.modal', function (e) {
+			// 모달창 내의 내용을 강제로 지움.
+    		$(this).removeData('bs.modal');
+		});
+		
+		/** Ajax에 의해서 로드 되는 폼에 대한 submit 이벤트 */
+		// <body>안에 처음부터 존재하는 요소가 아닌, Ajax에 의해서 동적으로
+		// 로드 되는 요소이므로 on 함수를 통한 이벤트 정의가 요구된다.
+		$(document).on('submit', '#login-form', function(e) {
+			// 페이지 이동이 방지된다.
+			// -> form 내부의 스크립트를 완성한 후, 제거
+			e.preventDefault();
+			
+			var uid = $(this).find("#user_id");
+			var upw = $(this).find("#user_pw");
+			
+			$.post('../api/login_ok.php', {
+				user_id: uid.val(),
+				user_pw: upw.val()
+			}, function(json) {
+				// 결과값이 로그인 실패를 의미할 경우
+				if (json.result == "FAIL") {
+					alert("로그인에 실패했습니다. 아이디와 비밀번호를 확인하세요.");
+					uid.val("");
+					upw.val("");
+					uid.focus();
+					return false;
+				}
+
+				alert("안녕하세요. " + uid.val() + "님");
+				// 로그인 성공시 모달창 강제로 닫기
+				$("#myModal").modal('hide');
+			});
+		});
+	});
+</script>
+</body>
+</html>

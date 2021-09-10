@@ -1,0 +1,30 @@
+[2021-06-23 00:00:14.313][ERROR] DepartmentServiceImpl.getDepartmentCount(DepartmentServiceImpl.java:87) nested exception is org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: java.lang.IllegalArgumentException: Mapped Statements collection does not contain value for DepartmentMapper.selectCouontAll
+### Cause: java.lang.IllegalArgumentException: Mapped Statements collection does not contain value for DepartmentMapper.selectCouontAll
+[2021-06-23 00:00:14.315][ERROR] DepartmentServiceTest.testC(DepartmentServiceTest.java:79) 데이터 조회에 실패했습니다.
+[2021-06-23 00:00:22.854][ERROR] DepartmentServiceImpl.getDepartmentCount(DepartmentServiceImpl.java:87) nested exception is org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: java.lang.IllegalArgumentException: Mapped Statements collection does not contain value for DepartmentMapper.selectCouontAll
+### Cause: java.lang.IllegalArgumentException: Mapped Statements collection does not contain value for DepartmentMapper.selectCouontAll
+[2021-06-23 00:00:22.855][ERROR] DepartmentServiceTest.testC(DepartmentServiceTest.java:79) 데이터 조회에 실패했습니다.
+[2021-06-23 10:00:39.672][ERROR] DepartmentServiceImpl.editDepartment(DepartmentServiceImpl.java:138) result=0
+[2021-06-23 10:00:39.673][ERROR] DepartmentServiceTest.testF(DepartmentServiceTest.java:117) 저장된 데이터가 없습니다.
+[2021-06-23 10:00:39.697][ERROR] DepartmentServiceImpl.deleteDepartment(DepartmentServiceImpl.java:165) result=0
+[2021-06-23 10:00:39.697][ERROR] DepartmentServiceTest.testG(DepartmentServiceTest.java:134) 삭제된 데이터가 없습니다.
+[2021-06-23 10:03:12.660][ERROR] DepartmentServiceImpl.editDepartment(DepartmentServiceImpl.java:138) result=0
+[2021-06-23 10:03:12.660][ERROR] DepartmentServiceTest.testF(DepartmentServiceTest.java:117) 저장된 데이터가 없습니다.
+[2021-06-23 10:03:12.687][ERROR] DepartmentServiceImpl.deleteDepartment(DepartmentServiceImpl.java:165) result=0
+[2021-06-23 10:03:12.687][ERROR] DepartmentServiceTest.testG(DepartmentServiceTest.java:134) 삭제된 데이터가 없습니다.
+[2021-06-23 10:29:32.907][ERROR] DepartmentServiceImpl.editDepartment(DepartmentServiceImpl.java:138) result=0
+[2021-06-23 10:29:32.907][ERROR] DepartmentServiceTest.testF(DepartmentServiceTest.java:117) 저장된 데이터가 없습니다.
+[2021-06-23 10:29:32.936][ERROR] DepartmentServiceImpl.deleteDepartment(DepartmentServiceImpl.java:165) result=0
+[2021-06-23 10:29:32.936][ERROR] DepartmentServiceTest.testG(DepartmentServiceTest.java:134) 삭제된 데이터가 없습니다.
+[2021-06-23 10:30:43.760][ERROR] DepartmentServiceImpl.editDepartment(DepartmentServiceImpl.java:138) result=0
+[2021-06-23 10:30:43.762][ERROR] DepartmentServiceTest.testF(DepartmentServiceTest.java:117) 저장된 데이터가 없습니다.
+[2021-06-23 10:30:43.814][ERROR] DepartmentServiceImpl.deleteDepartment(DepartmentServiceImpl.java:165) result=0
+[2021-06-23 10:30:43.815][ERROR] DepartmentServiceTest.testG(DepartmentServiceTest.java:134) 삭제된 데이터가 없습니다.
+[2021-06-23 20:55:53.518][ERROR] DepartmentServiceImpl.getDepartmentList(DepartmentServiceImpl.java:68) nested exception is org.apache.ibatis.reflection.ReflectionException: There is no getter for property named 'listCount' in 'class study.spring.simplespring.model.Department'
+[2021-06-23 20:55:53.519][ERROR] DepartmentServiceTest.testB(DepartmentServiceTest.java:74) 데이터 조회에 실패했습니다.
+[2021-06-23 20:55:53.621][ERROR] DepartmentServiceImpl.editDepartment(DepartmentServiceImpl.java:138) result=0
+[2021-06-23 20:55:53.621][ERROR] DepartmentServiceTest.testF(DepartmentServiceTest.java:143) 수정된 데이터가 없습니다.
+[2021-06-23 20:55:53.644][ERROR] DepartmentServiceImpl.deleteDepartment(DepartmentServiceImpl.java:165) result=0
+[2021-06-23 20:55:53.644][ERROR] DepartmentServiceTest.testG(DepartmentServiceTest.java:160) 삭제된 데이터가 없습니다.

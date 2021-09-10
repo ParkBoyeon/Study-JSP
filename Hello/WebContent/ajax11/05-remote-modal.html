@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+    <title>Hello Javascript</title>
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <script src="http://code.jquery.com/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    
+	<!-- ajax-helper -->
+    <link rel="stylesheet" href="../plugins/ajax/ajax_helper.css" />
+    <script src="../plugins/ajax/ajax_helper.js"></script>
+</head>
+
+<body>
+<div class="container">
+	<h1 class="page-header">100+50=?</h1>
+
+	<a href="modal-cancel.html" class="btn btn-primary" 
+		data-toggle="modal" data-target="#myModal">
+	  	100</a>
+
+	<a href="modal-ok.html" class="btn btn-primary" 
+		data-toggle="modal" data-target="#myModal">
+	  	150</a>
+
+	<a href="modal-cancel.html" class="btn btn-primary" 
+		data-toggle="modal" data-target="#myModal">
+	  	200</a>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+		<!-- 이 위치에 다른 HTML이 연결된다 -->
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+	$(function() {
+		// 모든 모달이 완전히 닫힌 직후 호출됨
+		$('.modal').on('hidden.bs.modal', function (e) {
+			// 모달창 내의 내용을 강제로 지움.
+    		$(this).removeData('bs.modal');
+		});
+	});
+</script>
+</body>
+</html>

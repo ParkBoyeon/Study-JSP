@@ -1,0 +1,90 @@
+package study.spring.exam04.interceptor;
+
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.ModelAndView;
+
+import lombok.extern.slf4j.Slf4j;
+import uap_clj.java.api.Browser;
+import uap_clj.java.api.Device;
+import uap_clj.java.api.OS;
+
+@Slf4j
+public class AppInterceptor implements HandlerInterceptor {
+    long startTime=0, endTime=0;
+    
+    @SuppressWarnings("unchecked")
+	@Override
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        startTime = System.currentTimeMillis();
+
+        String url = request.getRequestURL().toString();
+
+        String methodName = request.getMethod();
+
+        String queryString = request.getQueryString();
+
+        if (queryString != null) {
+            url = url + "?" + queryString;
+        }
+
+        log.debug(String.format("[%s] %s", methodName, url));
+
+        Map<String, String[]> params = request.getParameterMap();
+
+        for (String key : params.keySet()) {
+            String[] value = params.get(key);
+            log.debug(String.format("(p) <-- %s = %s", key, String.join(",", value)));
+        }
+
+        String referer = request.getHeader("referer");
+
+        if (referer != null && endTime > 0) {
+            log.debug(String.format("- REFERER : time=%d, url=%s", startTime - endTime, referer));
+        }
+        
+
+        String ua = request.getHeader("User-Agent");
+        Map<String, String> browser = Browser.lookup(ua);
+        Map<String, String> os = (Map<String, String>) OS.lookup(ua);
+        Map<String, String> device = (Map<String, String>) Device.lookup(ua);
+
+        
+        String browserStr = String.format("- Browser: {family=%s, patch=%s, major=%s, minor=%s}", 
+            browser.get("family"), browser.get("patch"), browser.get("major"), browser.get("minor"));
+
+        String osStr = String.format("- OS: {family=%s, patch=%s, patch_minor=%s, major=%s, minor=%s}",
+            os.get("family"), os.get("patch"), os.get("patch_minor"), os.get("major"), os.get("minor"));
+
+        String deviceStr = String.format("- Device: {family=%s, model=%s, brand=%s}", 
+            device.get("family"), device.get("model"), device.get("brand"));
+
+       
+        log.debug(browserStr);
+        log.debug(osStr);
+        log.debug(deviceStr);
+
+		return HandlerInterceptor.super.preHandle(request, response, handler);
+	}
+
+	@Override
+	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+        //log.debug("AppInterceptor.postHandle 실행됨");
+        // 컨트롤러 종료시의 시각을 가져온다.
+        endTime = System.currentTimeMillis();
+        // 시작시간과 종료시간 사이의 차이를 구하면 페이지의 실행시간을 구할 수 있다.
+        log.debug(String.format("running time: %d(ms)\n", endTime-startTime));
+		HandlerInterceptor.super.postHandle(request, response, handler, modelAndView);
+	}
+
+	@Override
+	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+        //log.debug("AppInterceptor.afterCompletion 실행됨");
+		HandlerInterceptor.super.afterCompletion(request, response, handler, ex);
+	}
+    
+}

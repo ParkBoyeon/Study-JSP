@@ -1,0 +1,43 @@
+[2021-07-17 09:25:39.436][ERROR] ProfessorServiceImpl.getProfessorItem(ProfessorServiceImpl.java:39) result=null
+[2021-07-17 09:25:39.437][ERROR] ProfessorServiceTest.testA(ProfessorServiceTest.java:46) 조회된 데이터가 없습니다.
+[2021-07-17 09:25:39.627][ERROR] ProfessorServiceImpl.editProfessor(ProfessorServiceImpl.java:137) result=0
+[2021-07-17 09:25:39.627][ERROR] ProfessorServiceTest.testF(ProfessorServiceTest.java:130) 수정된 데이터가 없습니다.
+[2021-07-17 09:25:39.665][ERROR] ProfessorServiceImpl.deleteProfessor(ProfessorServiceImpl.java:166) result=0
+[2021-07-17 09:25:39.665][ERROR] ProfessorServiceTest.testG(ProfessorServiceTest.java:145) 삭제된 데이터가 없습니다.
+[2021-07-17 09:30:57.660][ERROR] ProfessorServiceImpl.getProfessorItem(ProfessorServiceImpl.java:39) result=null
+[2021-07-17 09:30:57.676][ERROR] ProfessorServiceTest.testA(ProfessorServiceTest.java:46) 조회된 데이터가 없습니다.
+[2021-07-17 09:30:57.845][ERROR] ProfessorServiceImpl.editProfessor(ProfessorServiceImpl.java:137) result=0
+[2021-07-17 09:30:57.845][ERROR] ProfessorServiceTest.testF(ProfessorServiceTest.java:130) 수정된 데이터가 없습니다.
+[2021-07-17 09:30:57.868][ERROR] ProfessorServiceImpl.editProfessor(ProfessorServiceImpl.java:137) result=0
+[2021-07-17 09:30:57.869][ERROR] ProfessorServiceTest.testG(ProfessorServiceTest.java:145) 수정된 데이터가 없습니다.
+[2021-07-17 09:31:39.866][ERROR] ProfessorServiceImpl.getProfessorItem(ProfessorServiceImpl.java:39) result=null
+[2021-07-17 09:31:39.866][ERROR] ProfessorServiceTest.testA(ProfessorServiceTest.java:46) 조회된 데이터가 없습니다.
+[2021-07-17 09:31:40.030][ERROR] ProfessorServiceImpl.editProfessor(ProfessorServiceImpl.java:137) result=0
+[2021-07-17 09:31:40.030][ERROR] ProfessorServiceTest.testF(ProfessorServiceTest.java:130) 수정된 데이터가 없습니다.
+[2021-07-17 09:31:40.067][ERROR] ProfessorServiceImpl.deleteProfessor(ProfessorServiceImpl.java:166) result=0
+[2021-07-17 09:31:40.068][ERROR] ProfessorServiceTest.testG(ProfessorServiceTest.java:145) 삭제된 데이터가 없습니다.
+[2021-07-17 09:32:04.485][ERROR] ProfessorServiceImpl.getProfessorItem(ProfessorServiceImpl.java:39) result=null
+[2021-07-17 09:32:04.485][ERROR] ProfessorServiceTest.testA(ProfessorServiceTest.java:46) 조회된 데이터가 없습니다.
+[2021-07-17 09:32:04.640][ERROR] ProfessorServiceImpl.editProfessor(ProfessorServiceImpl.java:137) result=0
+[2021-07-17 09:32:04.640][ERROR] ProfessorServiceTest.testF(ProfessorServiceTest.java:130) 수정된 데이터가 없습니다.
+[2021-07-17 09:32:04.676][ERROR] ProfessorServiceImpl.deleteProfessor(ProfessorServiceImpl.java:166) result=0
+[2021-07-17 09:32:04.677][ERROR] ProfessorServiceTest.testG(ProfessorServiceTest.java:145) 삭제된 데이터가 없습니다.
+[2021-07-17 09:33:54.282][ERROR] ProfessorServiceImpl.getProfessorItem(ProfessorServiceImpl.java:39) result=null
+[2021-07-17 09:33:54.282][ERROR] ProfessorServiceTest.testA(ProfessorServiceTest.java:46) 조회된 데이터가 없습니다.
+[2021-07-17 09:33:54.450][ERROR] ProfessorServiceImpl.editProfessor(ProfessorServiceImpl.java:137) result=0
+[2021-07-17 09:33:54.450][ERROR] ProfessorServiceTest.testF(ProfessorServiceTest.java:130) 수정된 데이터가 없습니다.
+[2021-07-17 09:33:54.487][ERROR] ProfessorServiceImpl.deleteProfessor(ProfessorServiceImpl.java:166) result=0
+[2021-07-17 09:33:54.487][ERROR] ProfessorServiceTest.testG(ProfessorServiceTest.java:145) 삭제된 데이터가 없습니다.
+[2021-07-17 09:35:03.165][ERROR] ProfessorServiceImpl.getProfessorItem(ProfessorServiceImpl.java:39) result=null
+[2021-07-17 09:35:03.166][ERROR] ProfessorServiceTest.testA(ProfessorServiceTest.java:46) 조회된 데이터가 없습니다.
+[2021-07-17 09:35:03.330][ERROR] ProfessorServiceImpl.editProfessor(ProfessorServiceImpl.java:137) result=0
+[2021-07-17 09:35:03.330][ERROR] ProfessorServiceTest.testF(ProfessorServiceTest.java:131) 수정된 데이터가 없습니다.
+[2021-07-17 09:35:03.361][ERROR] ProfessorServiceImpl.deleteProfessor(ProfessorServiceImpl.java:166) result=0
+[2021-07-17 09:35:03.361][ERROR] ProfessorServiceTest.testG(ProfessorServiceTest.java:146) 삭제된 데이터가 없습니다.
+[2021-07-17 09:35:36.759][ERROR] ProfessorServiceTest.testA(ProfessorServiceTest.java:34) 
+[2021-07-17 09:35:36.763][ERROR] ProfessorServiceTest.testB(ProfessorServiceTest.java:48) 
+[2021-07-17 09:35:36.764][ERROR] ProfessorServiceTest.testC(ProfessorServiceTest.java:61) 
+[2021-07-17 09:35:36.765][ERROR] ProfessorServiceTest.testD(ProfessorServiceTest.java:76) 
+[2021-07-17 09:35:36.766][ERROR] ProfessorServiceTest.testE(ProfessorServiceTest.java:97) 
+[2021-07-17 09:35:36.766][ERROR] ProfessorServiceTest.testF(ProfessorServiceTest.java:118) 
+[2021-07-17 09:35:36.767][ERROR] ProfessorServiceTest.testG(ProfessorServiceTest.java:133) 

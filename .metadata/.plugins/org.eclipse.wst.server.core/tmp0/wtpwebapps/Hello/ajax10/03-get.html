@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+    <title>Hello Javascript</title>
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <script src="http://code.jquery.com/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    
+    <!-- AjaxHelper -->
+    <script src="../plugins/ajax/ajax_helper.js"></script>
+    <link rel="stylesheet" type="text/css" href="../plugins/ajax/ajax_helper.css">
+</head>
+
+<body>
+	<div class="container">
+		<h1 class="page-header">HTTP GET</h1>
+		
+		<!-- 직접 이동 -->
+		<a href="../api/get.do?num1=123&num2=456" class="btn btn-warning">직접이동</a>
+		
+		<button id="mybutton" class="btn btn-primary" type="button">
+			다른 파일 읽어오기
+		</button>
+		<!-- 결과가 출력될 div -->
+		<div id="result"></div>
+	</div>
+	
+	<script type="text/javascript">
+		$(function(){
+			$("#mybutton").click(function(e){
+				// submit이나 링크의 페이지 이동을 방지한다. 
+				e.preventDefault();
+				
+				$.ajax({
+					// 결과를 읽어올 URL
+					url: '../api/get.do',
+					// 웹 프로그램에게 데이터를 전송하는 방식
+					// 생략할 경우 get으로 자동 지정됨
+					method:'get',
+					// 전달할 조건값은 JSON 형식으로 구성
+					// 사용하지 않을 경우 명시 자체를 생략할 수 있다.
+					data: { num1: 123, num2: 456 },
+					// 읽어올 내용의 형식(생략할 경우 json)
+					dataType: 'html',
+					// 읽어온 내용을 처리하기 위한 함수
+					success: function(req) {
+						// req는 url에 지정된 페이지에 접속했을 경우
+						// 브라우저에 표시되는 HTML소스 자체
+						$("#result").append(req);
+					}
+				});	// end $.ajax
+			});	// end click
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<!-- MySQL 접속 정보를 지정한다. -->
+    <properties>
+        <property name="hostname" value="localhost" />
+        <property name="portnumber" value="3306" />
+        <property name="database" value="myschool" />
+        <property name="username" value="root" />
+        <property name="password" value="root" />
+    </properties>
+
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC" />
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.cj.jdbc.Driver" />
+                <property name="url" value="jdbc:mysql://${hostname}:${portnumber}/${database}?characterEncoding=UTF8&amp;serverTimezone=UTC" />
+                <property name="username" value="${username}" />
+                <property name="password" value="${password}" />
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!-- 실행할 SQL문을 정의한 Mapper XML의 경로를 지정한다. -->
+	<mappers>
+		<mapper resource="study/java/myschool/mapper/DepartmentMapper.xml" />
+		<mapper resource="study/java/myschool/mapper/ProfessorMapper.xml" />
+		<mapper resource="study/java/myschool/mapper/StudentMapper.xml" />
+	</mappers>
+</configuration>

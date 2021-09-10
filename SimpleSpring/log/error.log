@@ -1,0 +1,36 @@
+[2021-06-24 10:18:06.373][ERROR] DepartmentServiceImpl.editDepartment(DepartmentServiceImpl.java:138) result=0
+[2021-06-24 10:18:06.375][ERROR] DepartmentServiceTest.testF(DepartmentServiceTest.java:143) 수정된 데이터가 없습니다.
+[2021-06-24 10:18:06.395][ERROR] DepartmentServiceImpl.deleteDepartment(DepartmentServiceImpl.java:165) result=0
+[2021-06-24 10:18:06.395][ERROR] DepartmentServiceTest.testG(DepartmentServiceTest.java:160) 삭제된 데이터가 없습니다.
+[2021-06-24 10:21:23.273][ERROR] DepartmentServiceImpl.editDepartment(DepartmentServiceImpl.java:138) result=0
+[2021-06-24 10:21:23.274][ERROR] DepartmentServiceTest.testF(DepartmentServiceTest.java:143) 수정된 데이터가 없습니다.
+[2021-06-24 10:21:23.298][ERROR] DepartmentServiceImpl.deleteDepartment(DepartmentServiceImpl.java:165) result=0
+[2021-06-24 10:21:23.298][ERROR] DepartmentServiceTest.testG(DepartmentServiceTest.java:160) 삭제된 데이터가 없습니다.
+[2021-06-24 10:22:40.731][ERROR] DepartmentServiceImpl.editDepartment(DepartmentServiceImpl.java:138) result=0
+[2021-06-24 10:22:40.731][ERROR] DepartmentServiceTest.testF(DepartmentServiceTest.java:143) 수정된 데이터가 없습니다.
+[2021-06-24 10:22:40.756][ERROR] DepartmentServiceImpl.deleteDepartment(DepartmentServiceImpl.java:165) result=0
+[2021-06-24 10:22:40.756][ERROR] DepartmentServiceTest.testG(DepartmentServiceTest.java:160) 삭제된 데이터가 없습니다.
+[2021-06-24 15:29:46.679][ERROR] DepartmentServiceImpl.editDepartment(DepartmentServiceImpl.java:138) result=0
+[2021-06-24 15:29:46.679][ERROR] DepartmentServiceTest.testF(DepartmentServiceTest.java:143) 수정된 데이터가 없습니다.
+[2021-06-24 15:29:46.705][ERROR] DepartmentServiceImpl.deleteDepartment(DepartmentServiceImpl.java:165) result=0
+[2021-06-24 15:29:46.705][ERROR] DepartmentServiceTest.testG(DepartmentServiceTest.java:160) 삭제된 데이터가 없습니다.
+[2021-06-24 15:29:59.405][ERROR] DepartmentServiceImpl.editDepartment(DepartmentServiceImpl.java:138) result=0
+[2021-06-24 15:29:59.406][ERROR] DepartmentServiceTest.testF(DepartmentServiceTest.java:143) 수정된 데이터가 없습니다.
+[2021-06-24 15:29:59.434][ERROR] DepartmentServiceImpl.deleteDepartment(DepartmentServiceImpl.java:165) result=0
+[2021-06-24 15:29:59.434][ERROR] DepartmentServiceTest.testG(DepartmentServiceTest.java:160) 삭제된 데이터가 없습니다.
+[2021-06-24 15:30:16.982][ERROR] DepartmentServiceImpl.editDepartment(DepartmentServiceImpl.java:138) result=0
+[2021-06-24 15:30:16.982][ERROR] DepartmentServiceTest.testF(DepartmentServiceTest.java:143) 수정된 데이터가 없습니다.
+[2021-06-24 15:30:17.012][ERROR] DepartmentServiceImpl.deleteDepartment(DepartmentServiceImpl.java:165) result=0
+[2021-06-24 15:30:17.012][ERROR] DepartmentServiceTest.testG(DepartmentServiceTest.java:160) 삭제된 데이터가 없습니다.
+[2021-06-24 15:30:54.263][ERROR] DepartmentServiceImpl.editDepartment(DepartmentServiceImpl.java:138) result=0
+[2021-06-24 15:30:54.264][ERROR] DepartmentServiceTest.testF(DepartmentServiceTest.java:143) 수정된 데이터가 없습니다.
+[2021-06-24 15:30:54.298][ERROR] DepartmentServiceImpl.deleteDepartment(DepartmentServiceImpl.java:165) result=0
+[2021-06-24 15:30:54.298][ERROR] DepartmentServiceTest.testG(DepartmentServiceTest.java:160) 삭제된 데이터가 없습니다.
+[2021-06-24 15:39:41.400][ERROR] DepartmentServiceImpl.editDepartment(DepartmentServiceImpl.java:138) result=0
+[2021-06-24 15:39:41.400][ERROR] DepartmentServiceTest.testF(DepartmentServiceTest.java:143) 수정된 데이터가 없습니다.
+[2021-06-24 15:39:41.430][ERROR] DepartmentServiceImpl.deleteDepartment(DepartmentServiceImpl.java:165) result=0
+[2021-06-24 15:39:41.430][ERROR] DepartmentServiceTest.testG(DepartmentServiceTest.java:160) 삭제된 데이터가 없습니다.
+[2021-06-24 15:42:21.637][ERROR] DepartmentServiceImpl.editDepartment(DepartmentServiceImpl.java:138) result=0
+[2021-06-24 15:42:21.637][ERROR] DepartmentServiceTest.testF(DepartmentServiceTest.java:143) 수정된 데이터가 없습니다.
+[2021-06-24 15:42:21.660][ERROR] DepartmentServiceImpl.deleteDepartment(DepartmentServiceImpl.java:165) result=0
+[2021-06-24 15:42:21.660][ERROR] DepartmentServiceTest.testG(DepartmentServiceTest.java:160) 삭제된 데이터가 없습니다.

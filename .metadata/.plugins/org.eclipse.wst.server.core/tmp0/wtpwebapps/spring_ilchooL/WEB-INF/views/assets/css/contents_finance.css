@@ -1,0 +1,72 @@
+@charset "UTF-8";
+#title {
+	font-size: 24px;
+	padding-top: 50px;
+	padding-bottom: 12px;
+	text-align: center;
+	font-weight: 600;	
+}
+
+.md6 {
+	height: 300px;
+	padding: 20px 0;
+	border-top: 1px solid #e0e0e0;
+	border-bottom: 1px solid #e0e0e0;
+}
+
+.md4 {
+	min-height: 200px;
+	padding: 20px 0;
+	border-top: 1px solid #e0e0e0;
+	border-bottom: 1px solid #e0e0e0;
+}
+
+.col-md-6 {
+	padding: 10px 5%;
+}
+
+.col-md-4 {
+	padding: 50px 1%;
+}
+
+.md6 img {
+	width: 100%;
+	height: 100%;
+}
+
+.finance p:nth-child(1) {
+	display: inline;
+    font-size: 14px;
+    padding: 10px 0 10px 10px;
+    vertical-align: middle;
+    float: left;
+    color: black;
+}
+
+
+.finance p {
+    font-size: 12px;
+    padding: 10px 2px;
+    vertical-align: middle;
+    float: right;
+    color: black;
+}
+
+.finance span {
+	margin-top: 12px;
+}
+
+
+#number {
+	color: #6879ab;
+}
+
+.stock_img {
+	width: 7px;
+	height: 6px;
+	margin-top: 4px;
+}
+
+#name {
+	padding-right: 2.5px;
+}

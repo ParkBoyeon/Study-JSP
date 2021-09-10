@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+<title>Hello Javascript</title>
+
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<script src="http://code.jquery.com/jquery.min.js"></script>
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- AjaxHelper -->
+<script src="../plugins/ajax/ajax_helper.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="../plugins/ajax/ajax_helper.css">
+</head>
+
+<body>
+	<div class="container">
+		<h1 class="page-header">Login</h1>
+		
+		<form id="login-form" class="form-inline">
+			<input type="text" name="user_id" id="user_id" class="form-control" />
+			<input type="password" name="user_pw" id="user_pw" class="form-control" />
+			<button type="submit" class="btn btn-primary">로그인</button>
+		</form>
+		
+		<!-- 결과를 출력하기 위한 HTML -->
+		<div id="result"></div>
+	</div>
+	
+	<script type="text/javascript">
+		
+		$(function() {
+			$("#login-form").submit(function(e) {
+				// <form>태그가 submit되어 페이지가 이동되는 것을 방지한다.
+				e.preventDefault();
+
+				// $.post(url, data, success, dataType);
+				// --> data는 json형식, 필요 없을 경우 생략 가능
+				// --> dataType은 읽어올 형식, 생략시 json으로 지정됨
+				$.post("../api/post.do", {
+					user_id: $("#user_id").val(),
+					user_pw: $("#user_pw").val()
+				}, function(req) {
+					// 준비된 요소에게 읽어온 내용을 출력한다.
+					$("#result").html(req);
+				}, "html");	// end $.post
+			}); // end submit
+		});
+
+	</script>
+</body>
+</html>

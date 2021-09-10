@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+    <title>Hello Javascript</title>
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <script src="http://code.jquery.com/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div class="container">
+    <h1 class="page-header">Bootstrap Modal Open</h1>
+    <!-- 링크로 모달 열기 -->
+    <a href="#" class="btn btn-primary" data-toggle="modal" 
+        data-target="#myModal">open modal</a>
+    <!-- 스크립트로 모달 열기 -->
+    <button id="open_modal_btn" class="btn btn-info">
+        open by script</button>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" 
+                    aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Modal</h4>
+            </div>
+            <div class="modal-body">
+                <p>Hello Modal</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" 
+                    data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $("#open_modal_btn").click(function(e) {
+            // 스크립트를 사용하여 특정 Modal을 강제로 열기
+            $("#myModal").modal('show');
+            // 아래는 창을 강제로 닫기 처리
+            //$("#myModal").modal('hide');
+        });
+    });
+</script>
+</body>
+</html>

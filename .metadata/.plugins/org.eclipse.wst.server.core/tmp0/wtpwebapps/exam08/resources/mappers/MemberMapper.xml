@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MemberMapper">
+	<resultMap type="study.spring.member.model.Member" id="MemberMapper">
+		<result property="id" column="id" />
+		<result property="user_id" column="user_id" />
+		<result property="user_pw" column="user_pw" />
+		<result property="user_name" column="user_name" />
+		<result property="email" column="email" />
+		<result property="phone" column="phone" />
+		<result property="birthday" column="birthday" />
+		<result property="gender" column="gender" />
+		<result property="postcode" column="postcode" />
+		<result property="addr1" column="addr1" />
+		<result property="addr2" column="addr2" />
+		<result property="photo" column="photo" />
+		<result property="is_out" column="is_out" />
+		<result property="is_admin" column="is_admin" />
+		<result property="login_date" column="login_date" />
+		<result property="reg_date" column="reg_date" />
+		<result property="edit_date" column="edit_date" />
+	</resultMap>
+	
+	<insert id="add" parameterType="study.spring.member.model.Member" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO members (user_id, user_pw, user_name, email, phone, birthday, 
+		gender, postcode, addr1, addr2, photo, is_out, is_admin, login_date, 
+		reg_date, edit_date) VALUES (#{user_id}, md5(#{user_pw}), #{user_name}, 
+		#{email}, #{phone}, #{birthday}, #{gender}, #{postcode}, 
+		#{addr1}, #{addr2}, null, 'N', #{is_admin}, 
+		null, now(), now()
+		);
+	</insert>
+	
+	<update id="edit" parameterType="study.spring.member.model.Member">
+		UPDATE members SET
+		user_pw=md5(#{user_pw}), user_name=#{user_name}, 
+		email=#{email}, phone=#{phone}, birthday=#{birthday}, gender=#{gender}, 
+		postcode=#{postcode}, addr1=#{addr1}, addr2=#{addr2}, photo=#{photo}, 
+		edit_date=now()
+		<where> id=#{id};</where>
+	</update>
+	
+	<update id="out" parameterType="study.spring.member.model.Member">
+		UPDATE members SET is_out = 'Y', edit_date=now()
+		<where>id=#{id};</where>
+	</update>
+	
+	<select id="selectMember" parameterType="study.spring.member.model.Member" resultMap="MemberMapper">
+		SELECT user_id, user_pw, user_name, email, phone, birthday, 
+		gender, postcode, addr1, addr2, photo, is_out, is_admin, login_date, 
+		reg_date, edit_date FROM members
+		<where>user_id=#{user_id} AND user_pw=md5(#{user_pw}) AND is_out='N'</where>
+	</select>
+	
+	<update id="login" parameterType="study.spring.member.model.Member">
+		UPDATE members SET login_date=now()
+		<where>user_id=#{user_id} AND user_pw=md5(#{user_pw}) AND is_out='N'</where>
+	</update>
+	
+</mapper>

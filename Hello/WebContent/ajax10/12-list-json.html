@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+    <title>Hello Javascript</title>
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <script src="http://code.jquery.com/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+	<!-- ajax-helper -->
+    <link rel="stylesheet" href="../plugins/ajax/ajax_helper.css" />
+    <script src="../plugins/ajax/ajax_helper.js"></script>
+    <!-- handlebar plugin -->
+	<script src="../plugins/handlebars/handlebars-v4.0.11.js"></script>
+</head>
+
+<body>
+<div class="container">
+	<h1 class="page-header">학과목록</h1>
+
+	<table class='table'>
+		<thead>
+			<tr>
+				<th class='text-center'>학과번호</th>
+				<th class='text-center'>학과명</th>
+				<th class='text-center'>위치</th>
+			</tr>
+		</thead>
+		<tbody id='dept_list_body'>
+			<!-- Ajax로 로드한 결과가 표시될 곳 -->
+		</tbody>
+	</table>
+	<button type="button" id="more" class="btn btn-default btn-block"
+		style="margin-bottom: 15px">더보기</button>
+</div>
+
+<!-- template -->
+<script id="dept_item_tmpl" type="text/x-handlebars-template">
+	{{#each item}}
+	<tr>
+		<td class='text-center'>{{deptno}}</td>
+		<td class='text-center'>{{dname}}</td>
+		<td class='text-center'>{{loc}}</td>
+	</tr>
+	{{/each}}
+</script>
+
+<!-- 사용자 정의 스크립트 -->
+<script type="text/javascript">
+	/** AJAX로 JSON데이터를 가져와서 화면에 출력하는 함수 */
+	function get_list() {
+		$.get("../api/dept_list.json", function(req) {
+			// 미리 준비한 HTML틀을 읽어온다.
+			var template = Handlebars.compile($("#dept_item_tmpl").html());
+			// Ajax를 통해서 읽어온 JSON을 템플릿에 병합한다.
+			var html = template(req);
+			// #dept_list_body 읽어온 내용을 추가한다.
+			$("#dept_list_body").append(html);
+		});
+	}
+
+	$(function() {
+		get_list();		// 페이지가 열림과 동시에 호출된다.
+		$("#more").click(function(e) {
+			get_list();	// 버튼이 클릭되면 호출된다.
+		});
+	});
+</script>
+</body>
+</html>

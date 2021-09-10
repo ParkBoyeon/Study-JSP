@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+    <title>Hello Javascript</title>
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <script src="http://code.jquery.com/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    
+    <!-- AjaxHelper -->
+    <script src="../plugins/ajax/ajax_helper.js"></script>
+    <link rel="stylesheet" type="text/css" href="../plugins/ajax/ajax_helper.css">
+</head>
+
+<body>
+	<div class="container">
+		<h1 class="page-header">JSON 읽기</h1>
+		<button id="mybtn" type="button" class="btn btn-primary">학과정보 가져오기</button>
+		<hr />
+		<div id="result"></div>
+	</div>
+	
+	<!-- 사용자 정의 스크립트 -->
+	<script type="text/javascript">
+		$(function() {
+			/** 버튼 클릭시 이벤트 */
+			$("#mybtn").click(function() {
+				
+				$.get('../api/dept_item.json', function(req) {
+					// 동적 요소의 생성 --> html() 함수로 JSON 안에 포함된 내용을 출력한다. 
+					var deptno = $("<li>").html(req.deptno).addClass("list-group-item");
+					var dname = $("<li>").html(req.dname).addClass("list-group-item");
+					var loc = $("<li>").html(req.loc).addClass("list-group-item");
+					
+					// 생성한 요소들을 포함하기 위한 <ul>태그
+					var ul = $("<ul>").addClass("list-group");
+					ul.append(deptno).append(dname).append(loc);
+					
+					// 완성된 <ul>태그를 #result에 출력한다. 
+					$("#result").append(ul);
+					
+				});	// end $.get
+				
+			});	// end click
+		});
+	</script>
+</body>
+</html>

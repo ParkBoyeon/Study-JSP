@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop-reference-model>
+<aop-project name="spring_ilchooL"/>
+<aop-project name="exam04"/>
+<aop-project name="exam08"/>
+<aop-project name="SpringHelper"/>
+<aop-project name="SimpleSpring"/>
+</aop-reference-model>

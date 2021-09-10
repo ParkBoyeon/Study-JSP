@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+    <title>Hello Javascript</title>
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <script src="http://code.jquery.com/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    
+    <!-- AjaxHelper -->
+    <script src="../plugins/ajax/ajax_helper.js"></script>
+    <link rel="stylesheet" type="text/css" href="../plugins/ajax/ajax_helper.css">
+    <!-- handlebar plugin -->
+    <script src="../plugins/handlebars/handlebars-v4.0.11.js"></script>
+</head>
+
+<body>
+<div class="container">
+	<h1 class="page-header">학과정보 조회</h1>
+	
+	<div class="form-group">
+		<select id="dept" class="form-control">
+			<option value="">--- 선택하세요 ---</option>
+			<option value="101">컴퓨터공학과</option>
+			<option value="102">멀티미디어학과</option>
+			<option value="201">전자공학과</option>
+			<option value="202">기계공학과</option>
+		</select>
+	</div>
+	
+	<!-- 결과가 출력될 div -->
+	<div id="result"></div>
+</div>
+
+<!-- Ajax로 읽어온 내용을 출력하는데 사용될 HTML 템플릿 -->
+<script id="dept_item_tmpl" type="text/x-handlebars-template">
+	<ul class='list-group'>
+		<li class='list-group-item'>{{deptno}}</li>
+		<li class='list-group-item'>{{dname}}</li>
+		<li class='list-group-item'>{{loc}}</li>
+	</ul>
+</script>
+
+<!-- 사용자 정의 스크립트 -->
+<script type="text/javascript">
+	$(function() {
+		/** 드롭다운의 선택 변경 이벤트 */
+		$("#dept").change(function() {
+			$("#result").empty();	// 결과가 표시될 #result 에 내용 지우기
+			var choice = $(this).find("option:selected").val();
+			if(!choice){ // 선택값이 없다면 처리 중단
+				return false;
+			}
+			
+			/** Ajax 요청 */
+			$.get('../api/dept_item.do', { deptno: choice }, function(req) {
+				// 미리 준비한 HTML 틀을 읽어온다.
+				var template = Handlebars.compile($("#dept_item_tmpl").html());
+				// Ajax를 통해서 읽어온 JSON을 템플릿에 병합한다.
+				var html = template(req);
+				// #result에 읽어온 내용을 추가한다. 
+				$("#result").append(html);
+			});	// end $.get
+		});	// end change
+		
+	});
+</script>
+	
+</body>
+</html>

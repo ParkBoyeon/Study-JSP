@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 이 XML의 구조대로 구현될 클래스의 이름 => Impl클래스를 대체한다. -->
+<mapper namespace="HelloWorldMapper">
+
+	<!-- Beans 클래스의 객체이름(id)과 클래스이름(type)을 명시한다. -->
+	<resultMap id="helloworld" type="study.java.helloworld.model.HelloWorld">
+		<!-- Beans의 멤버변수(property)이름과 대상 테이블의 컬럼(column)을 연결한다. -->
+		<result property="id" column="id" />
+		<result property="realname" column="realname" />
+		<result property="username" column="username" />
+		<result property="password" column="password" />
+		<result property="email" column="email" />
+		<result property="gender" column="gender" />
+		<result property="birthdate" column="birthdate" />
+		<result property="tel" column="tel" />
+		<result property="postcode" column="postcode" />
+		<result property="addr1" column="addr1" />
+		<result property="addr2" column="addr2" />
+		<result property="is_admin" column="is_admin" />
+		<result property="reg_date" column="reg_date" />
+		<result property="edit_date" column="edit_date" />
+	</resultMap>
+
+	<!--
+		데이터 저장을 위한 기능 정의
+		<insert id="메서드이름" parameterType="파라미터의 데이터 타입" useGeneratedKeys="자동증가 일련번호값 리턴 여부" keyProperty="자동증가 일련번호 컬럼명">
+	-->
+	<insert id="add_helloworld" parameterType="study.java.helloworld.model.HelloWorld" useGeneratedKeys="true"
+		keyProperty="id">
+		<!-- "#{변수명}" 으로 표시된 곳에 Beans의 멤버변수가 치환된다. -->
+		INSERT INTO users (realname, username, password, email, gender, birthdate, tel, postcode, addr1, addr2, is_admin, reg_date, edit_date)
+		VALUES (#{realname}, #{username}, #{password}, #{email}, #{gender}, #{birthdate}, #{tel}, #{postcode}, #{addr1}, #{addr2}, #{is_admin}, #{reg_date}, #{edit_date});
+	</insert>
+
+	<!--
+		데이터 삭제를 위한 기능 정의
+		<delete id="메서드이름" parameterType="파라미터의 데이터 타입">
+	-->
+	<delete id="remove_helloworld" parameterType="study.java.helloworld.model.HelloWorld">
+		<!-- "#{변수명}" 으로 표시된 곳에 파라미터가 치환된다. -->
+		DELETE FROM users WHERE id=#{id};
+	</delete>
+
+	<!--
+		데이터 갱신을 위한 기능 정의
+		<update id="메서드이름" parameterType="파라미터의 데이터 타입">
+	-->
+	<update id="edit_helloworld" parameterType="study.java.helloworld.model.HelloWorld">
+		<!-- "#{변수명}" 으로 표시된 곳에 Beans의 멤버변수가 치환된다. -->
+		UPDATE users 
+		SET realname=#{realname}, username=#{username}, password=#{password}, email=#{email}, gender=#{gender}, birthdate=#{birthdate}, tel=#{tel}, postcode=#{postcode}, addr1=#{addr1}, addr2=#{addr2}, is_admin=#{is_admin}, reg_date=#{reg_date}, edit_date=#{edit_date} 
+		WHERE id=#{id};
+	</update>
+
+	<!--
+		단일행 조회를 위한 기능 정의
+		<select id="메서드이름" parameterType="파라미터의 데이터 타입" resultMap="리턴될 Beans이름">
+	-->
+	<select id="get_helloworld_item" parameterType="study.java.helloworld.model.HelloWorld" resultMap="helloworld">
+		<!-- "#{변수명}" 으로 표시된 곳에 파라미터가 치환된다. -->
+		SELECT id, realname, username, password, email, gender, birthdate, tel, postcode, addr1, addr2, is_admin, reg_date, edit_date FROM users 
+		WHERE id=#{id};
+	</select>
+	
+	<select id="get_helloworld_item_login" parameterType="study.java.helloworld.model.HelloWorld" resultMap="helloworld">
+		<!-- "#{변수명}" 으로 표시된 곳에 파라미터가 치환된다. -->
+		SELECT id, realname, username, password, email, gender, birthdate, tel, postcode, addr1, addr2, is_admin, reg_date, edit_date FROM users 
+		WHERE username=#{username} AND password=#{password};
+	</select>
+
+	<!--
+		다중행 조회를 위한 기능 정의
+		<select id="메서드이름" resultMap="리턴될 Beans이름">
+	-->
+	<select id="get_helloworld_list" resultMap="helloworld">
+		<!-- 이 안에서 처리할 SQL문을 명시한다. -->
+		SELECT id, realname, username, password, email, gender, birthdate, tel, postcode, addr1, addr2, is_admin, reg_date, edit_date FROM users;
+	</select>
+</mapper>

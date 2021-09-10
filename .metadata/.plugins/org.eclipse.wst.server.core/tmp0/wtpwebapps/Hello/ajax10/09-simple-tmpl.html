@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+    <title>Hello Javascript</title>
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <script src="http://code.jquery.com/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    
+    <!-- AjaxHelper -->
+    <script src="../plugins/ajax/ajax_helper.js"></script>
+    <link rel="stylesheet" type="text/css" href="../plugins/ajax/ajax_helper.css">
+    <!-- handlebar plugin -->
+    <script src="../plugins/handlebars/handlebars-v4.0.11.js"></script>
+</head>
+
+<body>
+<div class="container">
+	<h1 class="page-header">JSON 읽기</h1>
+	<button id="mybtn" type="button" class="btn btn-primary">학과정보 가져오기</button>
+	<hr />
+	<div id="result"></div>
+</div>
+
+<!-- Ajax로 읽어온 내용을 출력하는데 사용될 HTML 템플릿 -->
+<script id="dept_item_tmpl" type="text/x-handlebars-template">
+	<ul class='list-group'>
+		<li class='list-group-item'>{{deptno}}</li>
+		<li class='list-group-item'>{{dname}}</li>
+		<li class='list-group-item'>{{loc}}</li>
+	</ul>
+</script>
+
+<!-- 사용자 정의 스크립트 -->
+<script type="text/javascript">
+	$(function() {
+		/** 버튼 클릭시 이벤트 */
+		$("#mybtn").click(function() {
+			// Ajax로 JSON을 읽어온다. --> req는 JSON 내용
+			$.get("../api/dept_item.json", function(req) {
+				// 미리 준비한 HTML틀을 읽어온다.
+				var template = Handlebars.compile($("#dept_item_tmpl").html());
+				// Ajax를 통해서 읽어온 JSON을 템플릿에 병합나다.
+				var html = template(req);
+				// #result에 읽어온 내용을 추가한다.
+				$("#result").append(html);
+			});	// end $.get
+		});	//end click
+	});
+</script>
+	
+</body>
+</html>

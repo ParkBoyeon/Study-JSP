@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="ProfessorMapper">
+
+	<!-- Beans의 멤버변수(property)이름과 대상 테이블의 컬럼(column)을 연결한다. -->
+	<resultMap type="study.spring.springhelper.model.Professor" id="professorMap">
+		<result property="profno" column="profno" />
+		<result property="name" column="name" />
+		<result property="userid" column="userid" />
+		<result property="position" column="position" />
+		<result property="sal" column="sal" />
+		<result property="hiredate" column="hiredate" />
+		<result property="comm" column="comm" />
+		<result property="deptno" column="deptno" />
+		<result property="dname" column="dname" />
+		<result property="loc" column="loc" />
+	</resultMap>
+	
+	<!-- 단일행 조회를 위한 기능 정의 -->
+    <select id="selectItem"
+        parameterType="study.spring.springhelper.model.Professor"
+        resultMap="professorMap">
+        SELECT profno, name, userid, position, sal,
+               DATE_FORMAT(hiredate, '%Y-%m-%d') AS hiredate,
+               comm, p.deptno, dname, loc
+        FROM professor p
+        INNER JOIN department d ON p.deptno=d.deptno
+        WHERE profno=#{profno}
+    </select>
+	
+	<!-- 다중행 조회를 위한 기능 정의 -->
+	<select id="selectList"
+		parameterType="study.spring.springhelper.model.Professor" 
+		resultMap="professorMap">
+		SELECT profno, name, userid, position, sal,
+			DATE_FORMAT(hiredate, '%Y-%m-%d') AS hiredate,
+			comm, p.deptno, dname, loc
+		FROM professor p
+		INNER JOIN department d ON p.deptno=d.deptno
+		
+		<where>
+			<if test="name != null and name != ''">
+				name LIKE concat('%', #{name}, '%')
+			</if>
+		</where>
+		
+		ORDER BY profno DESC
+		
+		<if test="listCount > 0">
+			LIMIT #{offset}, #{listCount}
+		</if>
+	</select>
+	
+	<!-- 데이터 수 조회를 위한 기능 정의 -->
+	<select id="selectCountAll"
+		parameterType="study.spring.springhelper.model.Professor" resultType="int">
+		SELECT COUNT(*)
+		FROM professor p
+		INNER JOIN department d ON p.deptno=d.deptno
+		
+		<where>
+			<if test="name != null and name != ''">
+				name LIKE concat('%', #{name}, '%')
+			</if>
+		</where>
+	</select>
+	
+	<!-- 데이터 저장을 위한 기능 정의 -->
+	<insert id="insertItem"
+			parameterType="study.spring.springhelper.model.Professor"
+			useGeneratedKeys="true" keyProperty="profno">
+			INSERT INTO professor (
+				name, userid, position, sal, hiredate, comm, deptno
+			) VALUES (
+				#{name}, #{userid}, #{position}, #{sal}, #{hiredate}, #{comm}, #{deptno}
+			)
+	</insert>
+	
+	<!-- 데이터 삭제를 위한 기능 정의 -->
+	<delete id="deleteItem" 
+		parameterType="study.spring.springhelper.model.Professor">
+		DELETE FROM professor WHERE profno=#{profno}
+	</delete>
+	
+	<!-- 데이터 갱신을 위한 기능 정의 -->
+	<update id="updateItem"
+		parameterType="study.spring.springhelper.model.Professor">
+		UPDATE professor SET
+			name=#{name}, userid=#{userid}, position=#{position},
+			sal=#{sal}, hiredate=#{hiredate}, comm=#{comm}, deptno=#{deptno}
+		WHERE profno=#{profno}
+	</update>
+	
+
+</mapper>

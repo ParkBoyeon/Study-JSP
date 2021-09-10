@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- DB연동에 필요한 환경설정 값 -->
+    <util:properties id="dbConfig">
+        <!-- 데이터베이스 호스트 이름 -->
+        <prop key="dbHost">localhost</prop>
+        <!-- 데이터베이스 포트번호 -->
+        <prop key="dbPort">3306</prop>
+        <!-- 데이터베이스 이름 -->
+        <prop key="dbName">helloshop</prop>
+        <!-- 데이터베이스 문자셋 -->
+        <prop key="dbCharset">utf8</prop>
+        <!-- 데이터베이스 계정명 -->
+        <prop key="dbUsername">root</prop>
+        <!-- 데이터베이스 비밀번호 -->
+        <prop key="dbPassword">root</prop>
+        <!-- Mapper 파일들이 위치할 '/src/main/resources' 하위의 경로 -->
+        <prop key="mapperPath">/mappers/**/*Mapper.xml</prop>
+    </util:properties>
+    
+    <!-- ======= DATABASE 연동 설정 ======= -->
+    <!-- JDBC 객체 생성 -->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" />
+        <property name="url"
+            value="jdbc:log4jdbc:mysql://#{dbConfig['dbHost']}:#{dbConfig['dbPort']}/#{dbConfig['dbName']}?characterEncoding=#{dbConfig['dbCharset']}&amp;serverTimezone=UTC" />
+        <property name="username" value="#{dbConfig['dbUsername']}" />
+        <property name="password" value="#{dbConfig['dbPassword']}" />
+    </bean>
+</beans>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="StudentMapper">
+	<!-- 특정 교수를 참조하는 학생 데이터를 모두 참조 해제 한다. -->
+	<update id="unsetProfessor"
+		parameterType="study.spring.springhelper.model.Professor">
+		UPDATE student SET profno=null WHERE profno=#{profno}
+	</update>
+</mapper>

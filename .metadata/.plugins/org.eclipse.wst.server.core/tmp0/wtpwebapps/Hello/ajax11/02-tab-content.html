@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+    <title>Hello Javascript</title>
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <script src="http://code.jquery.com/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    
+	<!-- ajax-helper -->
+    <link rel="stylesheet" href="../plugins/ajax/ajax_helper.css" />
+    <script src="../plugins/ajax/ajax_helper.js"></script>
+</head>
+
+<body>
+<div class="container">
+	<h1 class="page-header">Tab Content</h1>
+	<div>
+		<!-- 탭 버튼 구성 -->
+		<ul class="nav nav-tabs" id="mytab">
+			<li><a href="#dept" data-toggle="tab" data-deptno="101">컴퓨터공학과</a></li>
+			<li><a href="#dept" data-toggle="tab" data-deptno="102">멀티미디어학과</a></li>
+			<li><a href="#dept" data-toggle="tab" data-deptno="201">전자공학과</a></li>
+			<li><a href="#dept" data-toggle="tab" data-deptno="202">기계공학과</a></li>
+		</ul>
+		<!-- 탭 페이지 구성(단일페이지) -->
+		<div class="tab-content">
+			<div role="tabpanel" class="tab-pane fade" id="dept"></div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$(function() {
+		/** 탭 페이지가 보여질 경우의 이벤트 */
+		// 탭 안의 모든 <a>태그에 대한 이벤트 -->  모든 탭 페이지가 열릴 때 이 이벤트가 호출됨
+		$('#mytab a').on('shown.bs.tab', function (e) {
+			// data-deptno 속성의 값을 취득한다.
+			var current_deptno = $(this).data("deptno");
+			
+			// Ajax요청을 통한 학과 데이터 조회
+			$.get('../api/dept_item.php', {deptno: current_deptno}, function(json) {
+				var h = $("<h3>").html(json.dname);
+				var p1 = $("<p>").html("학과번호: " + json.deptno);
+				var p2 = $("<p>").html("위치: " + json.loc);
+
+				// #dept 내의 모든 내용을 지우고, 준비한 요소들을 추가한다.
+				$("#dept").empty().append(h).append(p1).append(p2);
+			});
+		});
+
+		/** 첫 번째 링크에 연결된 탭 페이지 표시하기 */
+		// 이벤트가 적용된 후의 처리이므로 탭이 표시되면서 미리 정의한 이벤트가 호출된다.
+		$("#mytab a:eq(0)").tab('show');
+	});
+</script>
+</body>
+</html>

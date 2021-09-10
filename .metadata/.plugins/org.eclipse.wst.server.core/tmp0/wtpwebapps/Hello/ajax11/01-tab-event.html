@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+    <title>Hello Javascript</title>
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <script src="http://code.jquery.com/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div class="container">
+	<h1 class="page-header">Tab Event</h1>
+	<div>
+		<!-- 탭 버튼 구성 -->
+		<ul class="nav nav-tabs" id="mytab">
+			<li class="active"><a href="#page1" data-toggle="tab">Page1</a></li>
+			<li><a href="#page2" data-toggle="tab">Page2</a></li>
+			<li><a href="#page3" data-toggle="tab">Page3</a></li>
+		</ul>
+
+		<!-- 탭 페이지 구성 -->
+		<div class="tab-content">
+			<div role="tabpanel" class="tab-pane fade active in" id="page1">
+				<h1>Tab Page 1</h1>
+			</div>
+			<div role="tabpanel" class="tab-pane fade" id="page2">
+				<h1>Tab Page 2</h1>
+			</div>
+			<div role="tabpanel" class="tab-pane fade" id="page3">
+				<h1>Tab Page 3</h1>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$(function() {
+		/** 탭이 화면에서 사라지기 직전에 호출됨 */
+		$('#mytab a').on('hide.bs.tab', function (e) {
+			var tab_target = $(this).attr("href");
+			var tab_index = $(this).parent().index();
+			alert("hide > " + tab_target + " / " + tab_index);
+		});
+
+		/** 탭이 화면에 등장하기 직전에 호출됨 */
+		$('#mytab a').on('show.bs.tab', function (e) {
+			var tab_target = $(this).attr("href");
+			var tab_index = $(this).parent().index();
+			alert("show > " + tab_target + " / " + tab_index);
+		});
+
+		/** 탭이 화면에서 완전히 사라진 후 호출됨 */
+		$('#mytab a').on('hidden.bs.tab', function (e) {
+			var tab_target = $(this).attr("href");
+			var tab_index = $(this).parent().index();
+			alert("hidden > " + tab_target + " / " + tab_index);
+		});
+
+		/** 탭이 화면에 완전히 등장한 후 호출됨 */
+		$('#mytab a').on('shown.bs.tab', function (e) {
+			var tab_target = $(this).attr("href");
+			var tab_index = $(this).parent().index();
+			alert("shown > " + tab_target + " / " + tab_index);
+		});
+	});
+</script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+    <!-- DB연동에 필요한 환경설정 값 -->
+    <util:properties id="dbConfig">
+        <!-- 데이터베이스 호스트 이름 -->
+        <prop key="dbHost">localhost</prop>
+        <!-- 데이터베이스 포트번호 -->
+        <prop key="dbPort">3306</prop>
+        <!-- 데이터베이스 이름 -->
+        <prop key="dbName">myschool</prop>
+        <!-- 데이터베이스 문자셋 -->
+        <prop key="dbCharset">utf8</prop>
+        <!-- 데이터베이스 계정명 -->
+        <prop key="dbUsername">root</prop>
+        <!-- 데이터베이스 비밀번호 -->
+        <prop key="dbPassword">root</prop>
+        <!-- Mapper 파일들이 위치할 '/src/main/resources' 하위의 경로 -->
+        <prop key="mapperPath">/mappers/**/*Mapper.xml</prop>
+    </util:properties>
+    
+    <!-- 객체 생성하기 -->
+    <bean id="my_calc" class="study.spring.simplespring.vo.Calc1" />
+    
+    <!-- 생성자 파라미터를 요구하는 객체의 생성 -->
+    <bean id="my_calc2" class="study.spring.simplespring.vo.Calc2">
+        <!-- 기본 데이터 타입 형식의 값을 설정하는 경우 value 속성 사용 -->
+        <constructor-arg value="10" />
+        <constructor-arg value="20" />
+    </bean>
+    
+    <!-- 객체 생성 후 setter 메서드를 통한 값의 전달 -->
+    <bean id="my_value" class="study.spring.simplespring.vo.Value">
+        <!-- 멤버변수 이름을 지정하면 이와 연결되는 setter 메서드를 호출한다. -->
+        <property name="x">
+            <value type="java.lang.Integer">100</value>
+        </property>
+        <property name="y">
+            <value type="java.lang.Integer">200</value>
+        </property>
+    </bean>
+    
+    <!-- 생성자 파라미터에 다른 객체 전달하기 -->
+    <bean id="my_calc3" class="study.spring.simplespring.vo.Calc3">
+        <!-- 다른 객체를 참조시켜야 하므로 ref 속성 사용 -->
+        <constructor-arg ref="my_value" />
+    </bean>
+    
+    <!-- 객체 생성 직후 특정 메서드의 자동 호출 : init() -->
+    <bean id="my_calc4" class="study.spring.simplespring.vo.Calc4" init-method="init" />
+    
+    <!-- ======= DATABASE 연동 설정 ======= -->
+    <!-- JDBC 객체 생성 -->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" />
+        <property name="url" value="jdbc:log4jdbc:mysql://#{dbConfig['dbHost']}:#{dbConfig['dbPort']}/#{dbConfig['dbName']}?characterEncoding=#{dbConfig['dbCharset']}&amp;serverTimezone=UTC" />
+        <property name="username" value="#{dbConfig['dbUsername']}" />
+        <property name="password" value="#{dbConfig['dbPassword']}" />
+    </bean>
+
+    <!-- SQLSessionFactory 객체 생성 -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!-- JDBC 객체를 dataSource에 대한 setter 메서드를 통해 주입 -->
+        <property name="dataSource" ref="dataSource" />
+        <!-- MyBatis Mapper 파일들에 대한 경로 패턴 주입 -->
+        <property name="mapperLocations" value="classpath:#{dbConfig['mapperPath']}" />
+    </bean>
+
+    <!-- SQLSession 객체 생성. 이 객체가 Service 패턴에 주입된다. -->
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
+        <!-- 생성자를 통해 SQLSessionFactory 객체 주입 -->
+        <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory" />
+    </bean>
+    
+</beans>

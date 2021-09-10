@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+    <title>Hello Javascript</title>
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <script src="http://code.jquery.com/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    
+    <!-- AjaxHelper -->
+    <script src="../plugins/ajax/ajax_helper.js"></script>
+    <link rel="stylesheet" type="text/css" href="../plugins/ajax/ajax_helper.css">
+    <!-- handlebar plugin -->
+    <script src="../plugins/handlebars/handlebars-v4.0.11.js"></script>
+</head>
+
+<body>
+<div class="container">
+	<h1 class="page-header">중복검사 예제</h1>
+	<div class="form-group">
+		<label for="user_id">아이디</label>
+		<div class="input-group">
+			<input type="text" class="form-control" id="user_id"/>
+			<span class="input-group-btn">
+				<button class="btn btn-primary" type="button" id="id_uniq_check">
+				중복검사</button>
+			</span>
+		</div>
+	</div>
+</div>
+
+<!-- 사용자 정의 스크립트 -->
+<script type="text/javascript">
+
+$(function() {
+	/** 버튼 클릭시 이벤트 */
+	$("#id_uniq_check").click(function() {
+		// 입력값을 취득하고, 내용의 존재여부를 검사한다.
+		var user_id_val = $("#user_id").val();
+
+		if (!user_id_val) {	// 입력되지 않았다면?
+			alert("아이디를 입력하세요.");	// <-- 메시지 표시
+			$("#user_id").focus();			// <-- 커서를 강제로 넣기
+			return false;					// <-- 실행 중단
+		}
+
+		// 위의 if문을 무사히 통과했다면 내용이 존재한다는 의미이므로,
+		// 입력된 내용을 Ajax를 사용해서 웹 프로그램에게 전달한다.
+		$.post("../api/id_unique_check.do", { user_id: user_id_val }, function(req) {
+			// 사용 가능한 아이디인 경우 --> req = { result: "OK" }
+			// 사용 불가능한 아이디인 경우 --> req = { result: "FAIL" }
+			if (req.result == 'OK') {
+				alert("사용 가능한 아이디 입니다.");
+			} else {
+				alert("사용할 수 없는 아이디 입니다.");
+				$("#user_id").val("");
+				$("#user_id").focus();
+			}
+		}); // end $.get
+	}); // end click
+});
+
+</script>
+	
+</body>
+</html>

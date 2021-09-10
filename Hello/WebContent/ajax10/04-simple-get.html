@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+    <title>Hello Javascript</title>
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <script src="http://code.jquery.com/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    
+    <!-- AjaxHelper -->
+    <script src="../plugins/ajax/ajax_helper.js"></script>
+    <link rel="stylesheet" type="text/css" href="../plugins/ajax/ajax_helper.css">
+</head>
+
+<body>
+	<div class="container">
+		<h1 class="page-header">HTTP GET</h1>
+		
+		<button id="mybutton" class="btn btn-primary" type="button">
+			다른 파일 읽어오기
+		</button>
+		<!-- 결과가 출력될 div -->
+		<div id="result"></div>
+	</div>
+	
+	<script type="text/javascript">
+		$(function(){
+			$("#mybutton").click(function(e){
+				// submit이나 링크의 페이지 이동을 방지한다. 
+				e.preventDefault();
+				
+				// $.get(url, data, success, dataType);
+				// --> data는 json형식, 필요없을 경우 생략 가능
+				// --> dataType은 읽어올 형식, 생략시 json으로 지정됨
+				$.get('../api/get.do', { num1: 100, num2: 200 }, function(req) {
+					// 준비된 요소에게 읽어온 내용을 출력한다.
+					$("#result").append(req);
+				}, "html");	// end $.get
+			});	// end click
+		});
+	</script>
+</body>
+</html>

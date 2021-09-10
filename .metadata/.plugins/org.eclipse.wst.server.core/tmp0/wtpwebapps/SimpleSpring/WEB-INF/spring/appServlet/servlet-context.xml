@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.3.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<annotation-driven />
+
+	<!-- 웹 리소스 위치(location)에 대한 URL 맵핑(mapping) -->
+    <!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+    <!--resources mapping="/resources/**" location="/resources/" /-->
+    <resources mapping="/assets/**" location="/WEB-INF/views/assets/" />
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+	
+	<!-- 컨트롤러나 서비스의 구현체가 포함되어 있는 패키지들 나열 -->
+	<context:component-scan base-package="study.spring.simplespring.controllers" />
+	<context:component-scan base-package="study.spring.simplespring.service.impl" />
+	
+	
+	<!-- 인터셉터 등록 -->
+    <interceptors>
+        <interceptor>
+            <mapping path="/**" />
+            <beans:bean id="appInterceptor" class="study.spring.simplespring.interceptor.AppInterceptor" />
+        </interceptor>
+    </interceptors>
+    
+    <!-- 스케줄러 어노테이션 선언 -->
+    <task:annotation-driven/>
+    
+    <!-- 스케줄러로 동작할 객체 생성 -->
+    <beans:bean id="scheduleJob" class="study.spring.simplespring.scheduler.SimpleScheduler" />
+    
+    <!-- 생성한 스케줄러 객체에 대한 작업 스케쥴 지정 -->
+    <!-- <task:scheduled-tasks>
+    	1초마다 실행되는 작업
+    	<task:scheduled ref="scheduleJob" method="everySeconds" cron="* * * * * ?" />
+    	매 분 0초에 실행되는 작업
+    	<task:scheduled ref="scheduleJob" method="everyMinites" cron="0 * * * * ?" />
+    	10초마다 한 번씩 실행되는 작업
+    	<task:scheduled ref="scheduleJob" method="every10Seconds" cron="0/10 * * * * ?" />
+    	매일 자정에 실행되는 작업
+    	<task:scheduled ref="scheduleJob" method="everyMidnight" cron="0 0 0 * * ?" />
+    </task:scheduled-tasks> -->
+	
+</beans:beans>

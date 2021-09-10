@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 이 XML의 구조대로 구현될 클래스의 이름 => Impl클래스를 대체한다. -->
+<mapper namespace="DepartmentMapper">
+
+	<!-- Beans 클래스의 객체이름(id)과 클래스이름(type)을 명시한다. -->
+	<resultMap id="department" type="study.java.myschool.model.Department">
+		<!-- Beans의 멤버변수(property)이름과 대상 테이블의 컬럼(column)을 연결한다. -->
+		<result property="deptno" column="deptno" />
+		<result property="dname" column="dname" />
+		<result property="loc" column="loc" />
+	</resultMap>
+
+	<!--
+		데이터 저장을 위한 기능 정의
+		<insert id="메서드이름" parameterType="파라미터의 데이터 타입" useGeneratedKeys="자동증가 일련번호값 리턴 여부" keyProperty="자동증가 일련번호 컬럼명">
+	-->
+	<insert id="add_department" parameterType="study.java.myschool.model.Department" useGeneratedKeys="true"
+		keyProperty="deptno">
+		<!-- "#{변수명}" 으로 표시된 곳에 Beans의 멤버변수가 치환된다. -->
+		INSERT INTO department (dname, loc) VALUES (#{dname}, #{loc});
+	</insert>
+
+	<!--
+		데이터 삭제를 위한 기능 정의
+		<delete id="메서드이름" parameterType="파라미터의 데이터 타입">
+	-->
+	<delete id="remove_department" parameterType="study.java.myschool.model.Department">
+		<!-- "#{변수명}" 으로 표시된 곳에 파라미터가 치환된다. -->
+		DELETE FROM department WHERE deptno=#{deptno};
+	</delete>
+
+	<!--
+		데이터 갱신을 위한 기능 정의
+		<update id="메서드이름" parameterType="파라미터의 데이터 타입">
+	-->
+	<update id="edit_department" parameterType="study.java.myschool.model.Department">
+		<!-- "#{변수명}" 으로 표시된 곳에 Beans의 멤버변수가 치환된다. -->
+		UPDATE department SET dname=#{dname}, loc=#{loc} WHERE deptno=#{deptno};
+	</update>
+
+	<!--
+		단일행 조회를 위한 기능 정의
+		<select id="메서드이름" parameterType="파라미터의 데이터 타입" resultMap="리턴될 Beans이름">
+	-->
+	<select id="get_department_item" parameterType="study.java.myschool.model.Department" resultMap="department">
+		<!-- "#{변수명}" 으로 표시된 곳에 파라미터가 치환된다. -->
+		SELECT deptno, dname, loc FROM department WHERE deptno=#{deptno};
+	</select>
+
+	<!--
+		다중행 조회를 위한 기능 정의
+		<select id="메서드이름" resultMap="리턴될 Beans이름">
+	-->
+	<select id="get_department_list" resultMap="department">
+		<!-- 이 안에서 처리할 SQL문을 명시한다. -->
+		SELECT deptno, dname, loc FROM department;
+	</select>
+</mapper>

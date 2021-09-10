@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="MovieRankMapper">
+	    <insert id="insertItem" 
+        parameterType="study.spring.springhelper.model.SearchDailyBoxOfficeList$BoxOfficeResult$DailyBoxOfficeList">
+        INSERT INTO movie_ranks (
+            target_dt, `rank`, rank_inten, rank_old_and_new, 
+            movie_cd, movie_nm, open_dt,
+            sales_amt, sales_share, sales_inten, sales_change, sales_acc, 
+            audi_cnt, audi_inten, audi_change, audi_acc,
+            scrn_cnt, show_cnt, reg_date, edit_date
+        ) VALUES (
+            #{targetDt}, #{rank}, #{rankInten}, #{rankOldAndNew}, 
+            #{movieCd}, #{movieNm}, #{openDt},
+            #{salesAmt}, #{salesShare}, #{salesInten}, #{salesChange}, #{salesAcc}, 
+            #{audiCnt}, #{audiInten}, #{audiChange}, #{audiAcc},
+            #{scrnCnt}, #{showCnt}, now(), now()
+        );
+    </insert>
+    
+    <update id="updateItem"
+   	 	parameterType="study.spring.springhelper.model.SearchDailyBoxOfficeList$BoxOfficeResult$DailyBoxOfficeList">
+    	UPDATE movie_ranks SET
+    		target_dt			= #{targetDt},
+    		`rank`				= #{rank},
+    		rank_inten			= #{rankInten},
+    		rank_old_and_new	= #{rankOldAndNew},
+    		movie_cd			= #{movieCd},
+    		movie_nm			= #{movieNm},
+    		open_dt				= #{openDt},
+    		sales_amt			= #{salesAmt},
+    		sales_share			= #{salesShare},
+    		sales_inten			= #{salesInten},
+    		sales_change		= #{salesChange},
+    		sales_acc			= #{salesAcc},
+    		audi_cnt			= #{audiCnt},
+    		audi_inten			= #{audiInten},
+    		audi_change			= #{audiChange},
+    		audi_acc			= #{audiAcc},
+    		scrn_cnt			= #{scrnCnt},
+    		show_cnt			= #{showCnt},
+    		edit_date			= now()
+    	WHERE target_dt=#{targetDt} AND movie_nm=#{movieNm};
+    		
+    </update>
+</mapper>

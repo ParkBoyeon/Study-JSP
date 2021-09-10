@@ -1,0 +1,9 @@
+127.0.0.1 - - [05/Aug/2021:15:09:53 +0900] "GET / HTTP/1.1" 404 807
+0:0:0:0:0:0:0:1 - - [05/Aug/2021:15:10:03 +0900] "GET /springhelper/ HTTP/1.1" 200 608
+0:0:0:0:0:0:0:1 - - [05/Aug/2021:15:10:07 +0900] "GET /springhelper/professor/list.do HTTP/1.1" 200 8318
+0:0:0:0:0:0:0:1 - - [05/Aug/2021:15:10:17 +0900] "GET /springhelper/professor/list.do?keyword=%EA%B3%B5%ED%95%99 HTTP/1.1" 200 1559
+0:0:0:0:0:0:0:1 - - [05/Aug/2021:15:11:28 +0900] "GET /springhelper/professor/list.do?keyword=%EA%B3%B5%ED%95%99 HTTP/1.1" 200 1559
+0:0:0:0:0:0:0:1 - - [05/Aug/2021:15:21:21 +0900] "GET /simplespring/ HTTP/1.1" 404 824
+0:0:0:0:0:0:0:1 - - [05/Aug/2021:15:21:33 +0900] "GET /simplespring/ HTTP/1.1" 404 824
+0:0:0:0:0:0:0:1 - - [05/Aug/2021:15:21:38 +0900] "GET /springhelper/professor/list.do?keyword= HTTP/1.1" 200 8318
+0:0:0:0:0:0:0:1 - - [05/Aug/2021:15:22:55 +0900] "GET /springhelper/professor/list.do?keyword=%EB%B0%95%EB%B3%B4%EC%97%B0 HTTP/1.1" 200 8405
